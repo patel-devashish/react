@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const colorsArr = [
-  "#FF0000",
   "#FFFFFF",
+  "#FF0000",
   "#00FFFF",
   "#C0C0C0",
   "#0000FF",
@@ -26,13 +26,22 @@ const colorsArr = [
   "#7FFFD4",
 ];
 
+function randNumGenrator() {
+  return Math.floor(Math.random() * colorsArr.length);
+}
+
 function Colorflipper() {
+  const [color, setColor] = useState("#FFFFFF");
+  function changeColor() {
+    setColor(colorsArr[randNumGenrator()]);
+  }
+
   return (
-    <div>
+    <div style={{ backgroundColor: color }}>
       <h2>
-        Background color: <span>#ffffff</span>
+        Background color: <span>{String(color)}</span>
       </h2>
-      <button>CLICK ME !</button>
+      <button onClick={changeColor}>CLICK ME !</button>
     </div>
   );
 }
