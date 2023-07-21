@@ -40,12 +40,33 @@ let bithdaylist = [
   },
 ];
 
+function List({ people }) {
+  return (
+    <>
+      {people.map((person) => {
+        const { id, name, age, image } = person;
+        return (
+          <article key={id} className="person">
+            <img src={image} alt={name} />
+            <div classNmae="details">
+              <h4>{name}</h4>
+              <p>{age}-years old</p>
+            </div>
+          </article>
+        );
+      })}
+    </>
+  );
+}
+
 function Reminder() {
+  const [people, setPeople] = useState(bithdaylist);
   return (
     <main>
       <section className="container">
-        <h3>0 birthdays today</h3>
-        <button>Clear All</button>
+        <h3>{people.length} birthdays today</h3>
+        <List people={people}></List>
+        <button onClick={() => setPeople([])}>Clear All</button>
       </section>
     </main>
   );
