@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.css";
 
 function App() {
-  const [color, setColor] = useState("#000000"); // Default color is black
-
-  const handleColorChange = (event) => {
-    setColor(event.target.value);
-  };
-
   return (
-    <div>
-      <input type="color" value={color} onChange={handleColorChange} />
-      <p>Selected Color: {color}</p>
-      <div
-        style={{
-          width: "100px",
-          height: "100px",
-          backgroundColor: color,
-          border: "1px solid #000",
-          marginTop: "10px",
-        }}
-      ></div>
+    <div className="container">
+      <div className="color-slider"></div>
+
+      <div className="color-canvas-container">
+        <canvas className="color-canvas"></canvas>
+        <div className="color-cursor"></div>
+      </div>
+
+      <div className="color-value-display">
+        <input type="text" className="rgb-value" readOnly />
+        <input type="text" className="hex-value" readOnly />
+      </div>
     </div>
   );
 }
